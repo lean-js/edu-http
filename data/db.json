@@ -1,6 +1,14 @@
 {
   "topics": [
-    { "id": 1, "title": "WebSockets", "votes": 7 },
-    { "id": 1, "title": "WebWorker", "votes": 2 }
+    {
+      "id": 1,
+      "title": "WebSockets",
+      "votes": 0
+    },
+    {
+      "id": 2,
+      "title": "WebWorker",
+      "votes": 0
+    }
   ]
 }
