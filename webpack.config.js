@@ -27,6 +27,18 @@ module.exports = {
         use: [
           isProduction ? CssExtractPlugin.loader : 'style-loader',
           'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: function () {
+                  return [
+                    require('autoprefixer')
+                  ];
+                }
+              }
+            },
+          },
           'sass-loader',
         ],
       },
