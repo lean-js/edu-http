@@ -1,13 +1,17 @@
 const path = require('path');
 
 // Plugins
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
+const CssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 
-module.exports = {
-  mode: 'development',
+const isProduction = process.env.NODE_ENV === 'production';
 
-  devtool: 'eval-source-map',
+module.exports = {
+  mode: isProduction ? 'production' : 'development',
+
+  devtool: isProduction ? 'source-map' : 'eval-source-map',
   devServer: {
     contentBase: './dist',
   },
@@ -19,16 +23,28 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test: /\.(s)?css$/i,
+        use: [
+          isProduction ? CssExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
 
   plugins: [
     new CopyPlugin({ patterns: [ { from: './src/assets' } ] }),
+    new CssExtractPlugin(),
     new HtmlPlugin({ template: './src/index.html' }),
   ],
+
+  optimization: {
+    minimizer: [
+      `...`,
+      new CssMinimizerPlugin(),
+    ],
+  },
 
   output: {
     filename: '[name].bundle.js',

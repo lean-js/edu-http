@@ -1,4 +1,4 @@
 // Import styles
-import './styles/app.css';
+import './styles/app.scss';
 
 console.log(`[${new Date().toLocaleTimeString()}]: App started.`);
