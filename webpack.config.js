@@ -14,6 +14,9 @@ module.exports = {
   devtool: isProduction ? 'source-map' : 'eval-source-map',
   devServer: {
     contentBase: './dist',
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
   },
 
   entry: {

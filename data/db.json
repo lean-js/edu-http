@@ -1,0 +1,6 @@
+{
+  "topics": [
+    { "id": 1, "title": "WebSockets", "votes": 7 },
+    { "id": 1, "title": "WebWorker", "votes": 2 }
+  ]
+}
